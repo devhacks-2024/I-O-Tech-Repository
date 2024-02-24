@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+import json
 
 # Create your views here.
 def loginPage(req):
@@ -15,8 +16,9 @@ def loginPage(req):
 def signup(req):
     if req.method == "GET":
         return render(req,"signup.html")
-    else:
-        print(req.body)
+    elif req.method == "POST":
+        data = json.loads(req.body)
+        return JsonResponse(data, status=200)
 
 def dashboard(req):
     return render(req,"dashboard.html")
