@@ -36,7 +36,7 @@
       <div class="top">
         <ul>
           <li><a href="#" id="accountLink">Account</a></li>
-          <li><a href="">Log out</a></li>
+          <li><a href="#" id="logoutLink">Log out</a></li>
         </ul>
       </div>
       <div class="bottom">
@@ -47,11 +47,21 @@
         </div>
         <div id="agenda" style="display:none;">
           <!-- Agenda data here -->
-          <p>Agenda data...</p>
+          <ul id="agendaList"></ul>
         </div>
         <div id="account" style="display:none;">
           <!-- Account data here -->
-          <p>Account information...</p>
+          <form id="changePasswordForm">
+            <label for="username">User Name</label>
+            <input type="text" name="username" id="username" /><br />
+            <label for="oldpassword">Old password</label>
+            <input type="password" name="oldpassword" id="oldpassword" /><br />
+            <label for="newpassword">New password</label>
+            <input type="password" name="newpassword" id="newpassword" /><br />
+            <label for="assertpassword">Confirm new password</label>
+            <input type="password" name="assertpassword" id="assertpassword" /><br />
+            <input type="submit" class="change-password-btn" value="Change Password">
+          </form>
         </div>
       </div>
       
@@ -59,5 +69,6 @@
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="../static/js/dashboard.js"></script>
+    <script src="../static/js/changePassword.js"></script>
   </body>
 </html>

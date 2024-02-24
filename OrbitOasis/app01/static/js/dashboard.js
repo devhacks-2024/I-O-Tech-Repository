@@ -37,29 +37,39 @@ function getLocation() {
   }
 }
 
-function hideAllContent() {
-  document.getElementById("map").style.display = "none";
-  document.getElementById("jobBoard").style.display = "none";
-  document.getElementById("agenda").style.display = "none";
-  document.getElementById("account").style.display = "none"; // Add this line
+function updateAgenda(lat, lng) {
+  const now = new Date();
+  const listItem = `<li><p>Login Time: ${now.toString()}, Lat: ${lat}, Lng: ${lng}</p></li>`;
+  document.getElementById('agendaList').innerHTML = listItem;
 }
 
-// Show content based on clicked item
+function hideAllContent() {
+  document.getElementById('map').style.display = 'none';
+  document.getElementById('jobBoard').style.display = 'none';
+  document.getElementById('agenda').style.display = 'none';
+  document.getElementById('account').style.display = 'none';
+}
+
 function showContent(contentId) {
   hideAllContent();
-  document.getElementById(contentId).style.display = "block";
+  document.getElementById(contentId).style.display = 'block';
 }
 
-// Event listeners for nav menu items
-document.querySelectorAll("nav ul li").forEach((item) => {
-  item.addEventListener("click", function () {
+document.querySelectorAll('nav ul li').forEach(item => {
+  item.addEventListener('click', function () {
     const contentMap = {
-      Dashboard: "map",
-      "Job Board": "jobBoard",
-      Agenda: "agenda",
+      'Dashboard': 'map',
+      'Job Board': 'jobBoard',
+      'Agenda': 'agenda',
+      'Account': 'account' // Handle Account page display
     };
     const contentId = contentMap[item.textContent.trim()];
-    if (contentId) showContent(contentId); // Check if contentId exists to avoid errors
+    if (contentId === 'agenda') {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        updateAgenda(position.coords.latitude, position.coords.longitude);
+      });
+    }
+    showContent(contentId);
   });
 });
 
