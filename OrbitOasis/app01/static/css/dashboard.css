@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+}
+body nav {
+  background-color: #e1f1e7;
+  flex-grow: 1;
+  height: 100vh;
+}
+body nav img {
+  display: block;
+  width: 8rem;
+  margin: 0 auto;
+  padding: 0.5rem 0.5rem;
+}
+body nav ul {
+  margin-top: 5rem;
+  list-style: none;
+}
+body nav ul li {
+  margin: 0;
+  padding: 2rem 0rem;
+  text-align: center;
+  font-size: 1.5rem;
+  transition: all 0.4s ease;
+}
+body nav ul li:hover {
+  background-color: #b4d0a2;
+}
+body main {
+  flex-grow: 8;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body main div.top {
+  flex-grow: 1;
+  background-color: #447c83;
+}
+body main div.top ul {
+  display: flex;
+  list-style: none;
+  justify-content: right;
+  align-items: center;
+  height: 100%;
+}
+body main div.top ul li a {
+  color: black;
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0 1rem;
+}
+body main div.bottom {
+  flex-grow: 6;
+}
+body main div.bottom #map {
+  height: 100%;
+  width: 100%;
+}
+
+.active {
+  background-color: #b4d0a2;
+}/*# sourceMappingURL=style.css.map */
+
+/* Change Password Button Styles */
+input[type="submit"] {
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  cursor: pointer; /* Pointer cursor on hover */
+  padding: 10px; /* Padding inside the button */
+  margin-top: 20px; /* Margin at the top for spacing */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 1rem; /* Font size */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3; /* Darker blue background on hover */
+}
+/* Add this to your dashboard.css */
+#changePasswordForm {
+  /* Align the form items */
+  display: flex;
+  flex-direction: column;
+  max-width: 400px; /* Adjust the width as needed */
+  margin: auto; /* This will center the form in the parent element */
+
+}
+
+#changePasswordForm label,
+#changePasswordForm input {
+  margin-bottom: 0.5rem; /* This adds some space below each label and input */
+  font-size: 1.2rem; /* Increase the font size */
+  margin-bottom: 0.5rem; /* Adds space below the label */
+  margin-top: 1rem;
+}
+
+#changePasswordForm input {
+  padding: 0.5rem; /* Increase the input padding for better visibility */
+  border: 1px solid #ccc; /* Border color to match the overall style, if needed */
+  border-radius: 4px; /* Slight rounding of corners for a modern look */
+}
+
+#changePasswordForm input[type="submit"] {
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  cursor: pointer; /* Pointer cursor on hover */
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.2rem; /* Increase the font size for the button as well */
+  margin-top: 1rem; /* Adds margin at the top of the submit button */
+}
+
+#changePasswordForm input[type="submit"]:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
