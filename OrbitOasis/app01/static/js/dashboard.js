@@ -39,7 +39,7 @@ function getLocation() {
 
 function updateAgenda(lat, lng) {
   const now = new Date();
-  const listItem = `<li><p>Login Time: ${now.toString()}, Lat: ${lat}, Lng: ${lng}</p></li>`;
+  const listItem = `<p>Login Time: ${now.toString()}, Lat: ${lat}, Lng: ${lng}</p>`;
   document.getElementById('agendaList').innerHTML = listItem;
 }
 
