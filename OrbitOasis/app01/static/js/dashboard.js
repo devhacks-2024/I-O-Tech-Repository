@@ -37,4 +37,32 @@ function getLocation() {
   }
 }
 
+function hideAllContent() {
+  document.getElementById('map').style.display = 'none';
+  document.getElementById('jobBoard').style.display = 'none';
+  document.getElementById('agenda').style.display = 'none';
+}
+
+// Show content based on the clicked menu item
+function showContent(contentId) {
+  hideAllContent();
+  document.getElementById(contentId).style.display = 'block';
+}
+
+// Add click event listeners to the menu items
+document.querySelectorAll('nav ul li').forEach(item => {
+  item.addEventListener('click', function() {
+    const contentMap = {
+      'Dashboard': 'map',
+      'Job Board': 'jobBoard',
+      'Agenda': 'agenda',
+    };
+    const contentId = contentMap[item.textContent.trim()];
+    showContent(contentId);
+  });
+});
+
+// Initial call to display the map
+showContent('map');
+
 getLocation();
