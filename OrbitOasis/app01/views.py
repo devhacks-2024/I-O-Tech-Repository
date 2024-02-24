@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import User  # 假设你的用户模型名为 User
 import json
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 
 # Create your views here.
 def loginPage(req):
@@ -19,6 +20,7 @@ def loginPage(req):
 
             user = User.objects.filter(username=username, password=password).first()
             if user:
+                print(user.id)
                 req.session['user_id'] = user.id  # 在会话中存储用户ID
                 return JsonResponse({'status': 0, 'msg': '登录成功'}, status=200)
 
@@ -27,7 +29,6 @@ def loginPage(req):
                 return JsonResponse({'status': 1, 'msg': '用户名或密码错误'}, status=401)
         except Exception as e:
             return JsonResponse({'status': 1, 'msg': str(e)}, status=500)
-
 
 def signup(req):
     if req.method == "GET":
@@ -52,6 +53,6 @@ def signup(req):
 def dashboard(req):
     if 'user_id' not in req.session:
         # 用户未登录，重定向到登录页面
-        return redirect('/login/')
+        return redirect('/')
     # 用户已登录，渲染dashboard页面
     return render(req, "dashboard.html")
