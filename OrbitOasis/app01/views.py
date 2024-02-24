@@ -9,9 +9,9 @@ from django.contrib.auth.decorators import login_required
 def loginPage(req):
 
     print(req.method)
-    if not req.GET:
+    if req.method == "GET":
         return render(req,"login.html")
-    else:
+    elif req.method =="POST":
         return HttpResponse("OK", status=200)
 
 
