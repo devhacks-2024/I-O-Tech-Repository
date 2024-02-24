@@ -7,13 +7,23 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def loginPage(req):
-
-    print(req.method)
     if req.method == "GET":
-        return render(req,"login.html")
-    elif req.method =="POST":
-        return HttpResponse("OK", status=200)
+        return render(req, "login.html")
+    elif req.method == "POST":
+        try:
+            data = json.loads(req.body.decode('utf-8'))  # 确保正确解码请求体
+            username = data.get('username')
+            password = data.get('password')
 
+            user = User.objects.filter(username=username, password=password).first()
+            if user:
+                # 登录成功逻辑
+                return JsonResponse({'status': 0, 'msg': '登录成功'}, status=200)
+            else:
+                # 用户名或密码不正确
+                return JsonResponse({'status': 1, 'msg': '用户名或密码错误'}, status=401)
+        except Exception as e:
+            return JsonResponse({'status': 1, 'msg': str(e)}, status=500)
 
 @csrf_exempt
 def signup(req):

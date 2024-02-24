@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d028c41a-1b48-4f26-a1de-2a92a5f94bd4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrbitOasis/app01/static/js/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/OrbitOasis/app01/static/js/signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrbitOasis/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/OrbitOasis/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OrbitOasis/app01/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/OrbitOasis/app01/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +62,7 @@
       <workItem from="1708741604381" duration="2031000" />
       <workItem from="1708744260462" duration="3366000" />
       <workItem from="1708784179522" duration="8579000" />
-      <workItem from="1708793167421" duration="1439000" />
+      <workItem from="1708793167421" duration="1818000" />
     </task>
     <servers />
   </component>
