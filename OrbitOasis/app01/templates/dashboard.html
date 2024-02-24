@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- Include Leaflet CSS and JavaScript -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        /* Style the map container */
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+
+        /* Style the footer container */
+        #footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome to Dashboard</h2>
+        <p>You are logged in successfully!</p>
+    </div>
+
+    <!-- Map container -->
+    <div id="map"></div>
+
+    <!-- Footer container -->
+    <div id="footer">
+        <p id="loginTime"></p>
+        <p id="currentLocation"></p>
+    </div>
+
+    <script>
+        // Initialize and display the map
+        var map = L.map('map').setView([51.505, -0.09], 13); // Set initial center and zoom level
+
+        // Add OpenStreetMap tile layer to the map
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Function to handle user's current location
+        function handleLocation() {
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+
+                    // Add marker for user's current location
+                    L.marker([lat, lng]).addTo(map)
+                        .bindPopup('Your Location')
+                        .openPopup();
+
+                    // Center map on user's location
+                    map.setView([lat, lng], 13);
+
+                    // Display current location in the footer
+                    document.getElementById('currentLocation').textContent = 'Current Location: ' + lat + ', ' + lng;
+
+                    // Send location data to server
+                    sendLocation(lat, lng);
+                });
+            } else {
+                alert('Geolocation is not supported by your browser');
+            }
+        }
+
+        // Function to send location data to server
+        function sendLocation(lat, lng) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'save_location.php', true); // Change 'save_location.php' to your server endpoint
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    console.log('Location data sent successfully.');
+                }
+            };
+            var data = JSON.stringify({ lat: lat, lng: lng });
+            xhr.send(data);
+        }
+
+        // Display current login time in the footer
+        var loginTime = new Date().toLocaleString();
+        document.getElementById('loginTime').textContent = 'Login Time: ' + loginTime;
+
+        // Call the handleLocation function
+        handleLocation();
+
+        // 监听页面关闭事件
+        window.addEventListener('beforeunload', function(event) {
+            // 显示退出时间
+            var logoutTime = new Date().toLocaleString();
+            // 创建一个新的弹出窗口来显示退出时间
+            var popup = window.open("", "Logout Time", "width=400,height=200");
+            popup.document.write("<h2>Logout Time</h2>");
+            popup.document.write("<p>" + logoutTime + "</p>");
+        });
+    </script>
+</body>
+</html>
