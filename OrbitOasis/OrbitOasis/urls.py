@@ -21,4 +21,5 @@ from app01 import views
 urlpatterns = [
     path("", views.loginPage),
     path("signup", views.signup),
+    path("dashboard",views.dashboard)
 ]

@@ -7,7 +7,10 @@ document.getElementById("loginForm").addEventListener("submit", (event) => {
     password: document.getElementById("password").value,
   };
 
-  xhrLogin.open("POST", "/login", true);
+
+  // 更正为 xhrLogin
+  xhrLogin.open("POST", "/", true);
+
   xhrLogin.setRequestHeader("Content-Type", "application/json");
   xhrLogin.onload = () => {
     // 更正为 xhrLogin.status
