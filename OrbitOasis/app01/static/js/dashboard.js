@@ -66,13 +66,22 @@ document.querySelectorAll("nav ul li").forEach((item) => {
 // Event listener for the "Account" link
 document.getElementById("accountLink").addEventListener("click", function (e) {
   e.preventDefault(); // Prevent the default link behavior
+
+  let active = document.querySelector(".active");
+
+  if (active != null) {
+    active.classList.remove("active");
+  }
   showContent("account");
 });
 
 document.querySelectorAll("nav li").forEach((item) => {
   item.addEventListener("click", () => {
     let active = document.querySelector(".active");
-    active.classList.remove("active");
+
+    if (active != null) {
+      active.classList.remove("active");
+    }
     item.classList.add("active");
   });
 });
