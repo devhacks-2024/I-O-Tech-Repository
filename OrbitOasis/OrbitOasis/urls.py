@@ -17,9 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app01 import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path("", views.loginPage),
+    path('', auth_views.LoginView.as_view(template_name='login.html')),
     path("signup", views.signup),
     path("dashboard",views.dashboard)
 ]

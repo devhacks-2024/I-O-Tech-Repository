@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import User  # 假设你的用户模型名为 User
 import json
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def loginPage(req):
@@ -34,5 +35,6 @@ def signup(req):
         except Exception as e:
             return JsonResponse({'status': 1, 'msg': str(e)}, status=500)
 
+@login_required
 def dashboard(req):
     return render(req,"dashboard.html")
