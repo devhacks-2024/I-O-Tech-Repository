@@ -7,38 +7,22 @@ document.getElementById("loginForm").addEventListener("submit", (event) => {
     password: document.getElementById("password").value,
   };
 
+  var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
   // 更正为 xhrLogin
   xhrLogin.open("POST", "/", true);
+
   xhrLogin.setRequestHeader("Content-Type", "application/json");
+  xhrLogin.setRequestHeader("X-CSRFToken", csrftoken);
+
   xhrLogin.onload = () => {
     // 更正为 xhrLogin.status
     if (xhrLogin.status === 200) {
-      // let xhrDashboard = new XMLHttpRequest();
-      alert("Not implement");
-    } else {
+      window.location.href = "./dashboard"
+    }else{
       alert("Invalid username or password");
     }
   };
   xhrLogin.onerror = () =>
     alert("Something gone wrong, Please try again later");
   xhrLogin.send(JSON.stringify(data));
-});
-
-document.getElementById("signUp").addEventListener("click", () => {
-  let xhrLogin = new XMLHttpRequest();
-  xhr.open("GET", "/signup", true);
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhrLogin.onload = () => {
-    if (xhr.status === 200) {
-      let htmlContent = JSON.parse(xhr.responseText);
-
-      let newWindow = window.open();
-      newWindow.document.open();
-      newWindow.document.write(htmlContent);
-      newWindow.document.close();
-    }
-  };
-  xhrLogin.onerror = () =>
-    alert("Something gone wrong, Please try again later");
-  xhrLogin.send();
 });

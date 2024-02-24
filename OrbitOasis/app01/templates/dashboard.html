@@ -125,11 +125,26 @@
         handleLocation();
 
         document.getElementById('logoutButton').addEventListener('click', function() {
-            var logoutTime = new Date().toLocaleString();
-            var loginRecord = document.createElement('li');
-            loginRecord.textContent = 'Logout Time: ' + logoutTime;
-            document.getElementById('loginRecords').appendChild(loginRecord);
+            // 清除所有cookies
+            // 发起AJAX请求到Django的登出视图
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/logout/', true);  // 确保使用正确的URL
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 400) {
+                    // 请求成功，可以重定向到登录页面或显示登出成功信息
+                    window.location.href = "/login/"; // 重定向到登录页面
+                } else {
+                    // 处理错误情况
+                    console.error('Logout failed');
+                }
+            };
+            xhr.onerror = function () {
+                // 通信出错
+                console.error('Logout request failed');
+            };
+            xhr.send();
 
+            // 重定向到登录页面或任何其他页面
             window.location.href = "/";
         });
     </script>

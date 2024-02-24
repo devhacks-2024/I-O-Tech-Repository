@@ -15,15 +15,32 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
         return;
     }
 
-    // 检查用户名是否已存在
-    const userExists = users.some(user => user.username === username);
-    if (userExists) {
-        alert('Username already exists. Please choose another.');
-    } else {
-        // 添加用户到数组（虚拟数据库）
-        users.push({ username, password });
-        alert('Registration successful. Please log in.');
-        // 重定向到登录页面
-        window.location.href = './login.html';
+    let data = {
+    username: username,
+    password: password,
+  };
+
+    let xhrSignup = new XMLHttpRequest();
+    xhrSignup.open("POST", "/signup", true);
+    xhrSignup.onload = () => {
+        if (xhrSignup.status === 201){
+            alert('Registration successful. Please log in.');
+            //window.location.href = '/';
+        }
     }
+    xhrSignup.onerror = () =>
+    alert("Something gone wrong, Please try again later");
+  xhrSignup.send(JSON.stringify(data));
+
+    // // 检查用户名是否已存在
+    // const userExists = users.some(user => user.username === username);
+    // if (userExists) {
+    //     alert('Username already exists. Please choose another.');
+    // } else {
+    //     // 添加用户到数组（虚拟数据库）
+    //     users.push({ username, password });
+    //     alert('Registration successful. Please log in.');
+    //     // 重定向到登录页面
+    //     window.location.href = './login.html';
+    // }
 });
