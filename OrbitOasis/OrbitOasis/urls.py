@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from app01 import views
 from django.contrib.auth import views as auth_views
+from app01.views import logout_view
 
 urlpatterns = [
     path('', views.loginPage),
     path("signup", views.signup),
-    path("dashboard",views.dashboard)
+    path("dashboard",views.dashboard),
+    path('logout/', logout_view, name='logout'),  # 添加登出路径
 ]

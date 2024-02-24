@@ -5,6 +5,8 @@ from .models import User  # 假设你的用户模型名为 User
 import json
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.contrib.auth import logout
+
 
 # Create your views here.
 def loginPage(req):
@@ -16,7 +18,7 @@ def loginPage(req):
             username = data.get('username')
             password = data.get('password')
 
-            print(username+', '+password)
+            print(username + ', ' + password)
 
             user = User.objects.filter(username=username, password=password).first()
             if user:
@@ -56,3 +58,8 @@ def dashboard(req):
         return redirect('/')
     # 用户已登录，渲染dashboard页面
     return render(req, "dashboard.html")
+
+
+def logout_view(request):
+    logout(request)  # 清除会话
+    return redirect('/login/')  # 重定向到登录页面
