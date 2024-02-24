@@ -3,6 +3,8 @@ from django.http import HttpResponse
 
 # Create your views here.
 def loginPage(req):
+
+    print(req.method)
     if not req.GET:
         return render(req,"login.html")
     else:

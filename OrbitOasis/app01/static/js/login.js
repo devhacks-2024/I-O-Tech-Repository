@@ -7,10 +7,12 @@ document.getElementById("loginForm").addEventListener("submit", (event) => {
     password: document.getElementById("password").value,
   };
 
-  xhr.open("POST", "/login", true);
-  xhr.setRequestHeader("Content-Type", "application/json");
+  // 更正为 xhrLogin
+  xhrLogin.open("POST", "/login", true);
+  xhrLogin.setRequestHeader("Content-Type", "application/json");
   xhrLogin.onload = () => {
-    if (xhr.status === 200) {
+    // 更正为 xhrLogin.status
+    if (xhrLogin.status === 200) {
       // let xhrDashboard = new XMLHttpRequest();
       alert("Not implement");
     } else {
