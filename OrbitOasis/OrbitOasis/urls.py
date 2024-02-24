@@ -20,5 +20,5 @@ from app01 import views
 
 urlpatterns = [
     path("", views.loginPage),
-    path("/signup.html", views.signup),
+    path("signup.html", views.signup),
 ]
