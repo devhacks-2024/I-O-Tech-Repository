@@ -16,7 +16,7 @@ app.use(express.json());
 
 // 确保数据库和表存在的代码保持不变
 
-app.get('/user', (req, res) => {
+app.get('/', (req, res) => {
     db.query('SELECT * FROM user', (err, data) => {
         if (err) return res.status(500).send(err.message);
         if (data.length === 0) return res.status(404).send('数据为空');
@@ -29,7 +29,8 @@ app.get('/user', (req, res) => {
 });
 
 // 添加一个新的POST路由来接收用户数据并添加到数据库
-app.post('/add-user', (req, res) => {
+app.post('/signup', (req, res) => {
+    console.log(req.body);
     const { username, password } = req.body;
     db.query('INSERT INTO user (username, password) VALUES (?, ?)', [username, password], (err, result) => {
         if (err) {
