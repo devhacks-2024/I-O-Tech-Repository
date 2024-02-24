@@ -96,6 +96,31 @@ document.querySelectorAll("nav li").forEach((item) => {
   });
 });
 
+function logout(){
+  // 发起AJAX请求到Django的登出视图
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/logout/', true);  // 确保使用正确的URL
+  xhr.onload = function () {
+      if (xhr.status >= 200 && xhr.status < 400) {
+          // 请求成功，重定向到登录页面
+          window.location.href = "/login/";
+      } else {
+          // 处理错误情况
+          console.error('Logout failed');
+      }
+      window.location.href = "/";
+  };
+  xhr.onerror = function () {
+      // 通信出错
+      console.error('Logout request failed');
+  };
+  xhr.send();
+};
+
+
+
+
+
 // Initial call to display the map (or another default view)
 showContent("map");
 
