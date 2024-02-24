@@ -20,7 +20,7 @@ from app01 import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', auth_views.LoginView.as_view(template_name='login.html')),
+    path('', views.loginPage),
     path("signup", views.signup),
     path("dashboard",views.dashboard)
 ]

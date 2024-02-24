@@ -78,6 +78,7 @@
         style="display: block; margin: 0 auto 20px auto; width: 150px"
       />
       <form id="loginForm">
+        {% csrf_token %}
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required />
         <label for="password">Password:</label>
