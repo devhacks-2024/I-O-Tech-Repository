@@ -14,12 +14,11 @@ document.getElementById("loginForm").addEventListener("submit", (event) => {
   xhrLogin.setRequestHeader("Content-Type", "application/json");
   xhrLogin.onload = () => {
     // 更正为 xhrLogin.status
-    window.location.href = "./dashboard";
-    // if (xhrLogin.status === 200) {
-    //   window.location.href = "./dashboard";
-    // } else {
-    //   alert("Invalid username or password");
-    // }
+    if (xhrLogin.status === 200) {
+      window.location.href = "./dashboard";
+    } else {
+      alert("Invalid username or password");
+    }
   };
   xhrLogin.onerror = () =>
     alert("Something gone wrong, Please try again later");

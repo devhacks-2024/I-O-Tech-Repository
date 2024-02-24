@@ -6,6 +6,7 @@ import json
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@csrf_exempt
 def loginPage(req):
     if req.method == "GET":
         return render(req, "login.html")
