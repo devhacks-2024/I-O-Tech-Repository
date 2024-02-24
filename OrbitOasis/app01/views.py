@@ -13,7 +13,10 @@ def loginPage(req):
 
 
 def signup(req):
-    return render(req,"signup.html")
+    if req.method == "GET":
+        return render(req,"signup.html")
+    else:
+        print(req.body)
 
 def dashboard(req):
     return render(req,"dashboard.html")
