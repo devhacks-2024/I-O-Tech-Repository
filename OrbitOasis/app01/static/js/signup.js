@@ -23,7 +23,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     let xhrSignup = new XMLHttpRequest();
     xhrSignup.open("POST", "/signup", true);
     xhrSignup.onload = () => {
-        if (xhrSignup.status === 200){
+        if (xhrSignup.status === 201){
             alert('Registration successful. Please log in.');
             //window.location.href = '/';
         }
