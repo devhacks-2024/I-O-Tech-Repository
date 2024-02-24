@@ -84,7 +84,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="./logo.jpg" alt="OrbitOasis Logo" style="display: block; margin: 0 auto 20px auto; width: 150px;" />
+        <img src="{% static 'img/logo.jpg' %}" alt="OrbitOasis Logo" style="display: block; margin: 0 auto 20px auto; width: 150px;" />
         <form id="signupForm">
             <label for="newUsername"><strong>Username:</strong></label>
             <input type="text" id="newUsername" name="newUsername" required>
@@ -95,7 +95,7 @@
             <input type="password" id="confirmNewPassword" name="confirmNewPassword" required minlength="8">
             <input type="submit" value="Sign Up">
         </form>
-        <p1>Already have an account? <a href="./login.html">Login here</a></p>
+        <p1>Already have an account? <a href="/">Login here</a></p>
     </div>
 
     <script src="signup.js"></script>
