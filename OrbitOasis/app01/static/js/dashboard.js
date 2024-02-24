@@ -41,15 +41,16 @@ function hideAllContent() {
   document.getElementById('map').style.display = 'none';
   document.getElementById('jobBoard').style.display = 'none';
   document.getElementById('agenda').style.display = 'none';
+  document.getElementById('account').style.display = 'none'; // Add this line
 }
 
-// Show content based on the clicked menu item
+// Show content based on clicked item
 function showContent(contentId) {
   hideAllContent();
   document.getElementById(contentId).style.display = 'block';
 }
 
-// Add click event listeners to the menu items
+// Event listeners for nav menu items
 document.querySelectorAll('nav ul li').forEach(item => {
   item.addEventListener('click', function() {
     const contentMap = {
@@ -58,11 +59,17 @@ document.querySelectorAll('nav ul li').forEach(item => {
       'Agenda': 'agenda',
     };
     const contentId = contentMap[item.textContent.trim()];
-    showContent(contentId);
+    if(contentId) showContent(contentId); // Check if contentId exists to avoid errors
   });
 });
 
-// Initial call to display the map
+// Event listener for the "Account" link
+document.getElementById('accountLink').addEventListener('click', function(e) {
+  e.preventDefault(); // Prevent the default link behavior
+  showContent('account');
+});
+
+// Initial call to display the map (or another default view)
 showContent('map');
 
 getLocation();
