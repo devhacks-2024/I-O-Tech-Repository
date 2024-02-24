@@ -31,7 +31,7 @@ def loginPage(req):
                 return JsonResponse({'status': 1, 'msg': '用户名或密码错误'}, status=401)
         except Exception as e:
             return JsonResponse({'status': 1, 'msg': str(e)}, status=500)
-
+@csrf_exempt
 def signup(req):
     if req.method == "GET":
         return render(req, "signup.html")
