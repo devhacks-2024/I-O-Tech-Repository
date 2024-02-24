@@ -38,38 +38,46 @@ function getLocation() {
 }
 
 function hideAllContent() {
-  document.getElementById('map').style.display = 'none';
-  document.getElementById('jobBoard').style.display = 'none';
-  document.getElementById('agenda').style.display = 'none';
-  document.getElementById('account').style.display = 'none'; // Add this line
+  document.getElementById("map").style.display = "none";
+  document.getElementById("jobBoard").style.display = "none";
+  document.getElementById("agenda").style.display = "none";
+  document.getElementById("account").style.display = "none"; // Add this line
 }
 
 // Show content based on clicked item
 function showContent(contentId) {
   hideAllContent();
-  document.getElementById(contentId).style.display = 'block';
+  document.getElementById(contentId).style.display = "block";
 }
 
 // Event listeners for nav menu items
-document.querySelectorAll('nav ul li').forEach(item => {
-  item.addEventListener('click', function() {
+document.querySelectorAll("nav ul li").forEach((item) => {
+  item.addEventListener("click", function () {
     const contentMap = {
-      'Dashboard': 'map',
-      'Job Board': 'jobBoard',
-      'Agenda': 'agenda',
+      Dashboard: "map",
+      "Job Board": "jobBoard",
+      Agenda: "agenda",
     };
     const contentId = contentMap[item.textContent.trim()];
-    if(contentId) showContent(contentId); // Check if contentId exists to avoid errors
+    if (contentId) showContent(contentId); // Check if contentId exists to avoid errors
   });
 });
 
 // Event listener for the "Account" link
-document.getElementById('accountLink').addEventListener('click', function(e) {
+document.getElementById("accountLink").addEventListener("click", function (e) {
   e.preventDefault(); // Prevent the default link behavior
-  showContent('account');
+  showContent("account");
+});
+
+document.querySelectorAll("nav li").forEach((item) => {
+  item.addEventListener("click", () => {
+    let active = document.querySelector(".active");
+    active.classList.remove("active");
+    item.classList.add("active");
+  });
 });
 
 // Initial call to display the map (or another default view)
-showContent('map');
+showContent("map");
 
 getLocation();
