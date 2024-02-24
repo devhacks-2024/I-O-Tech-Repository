@@ -14,3 +14,6 @@ def loginPage(req):
 
 def signup(req):
     return render(req,"signup.html")
+
+def dashboard(req):
+    return render(req,"dashboard.html")
