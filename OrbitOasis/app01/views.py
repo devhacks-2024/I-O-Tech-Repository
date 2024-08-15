@@ -31,6 +31,35 @@ def loginPage(req):
                 return JsonResponse({'status': 1, 'msg': '用户名或密码错误'}, status=401)
         except Exception as e:
             return JsonResponse({'status': 1, 'msg': str(e)}, status=500)
+def dashboard(req):
+    print("the method is: ", req.method)
+    if 'user_id' not in req.session:
+        # 用户未登录，重定向到登录页面
+        return redirect('/')
+
+    if req.method == "POST":
+        try:
+            data = json.loads(req.body)
+            lat = data.get('lat')
+            lng = data.get('lng')
+            addr = data.get('addr')
+
+            # 你可以选择在这里将数据保存到数据库，或者执行其他操作
+            print(f"Received location data: Lat: {lat}, Lng: {lng}, Address: {addr}")
+
+            return JsonResponse({'status': 0, 'msg': 'Data received successfully'}, status=200)
+        except Exception as e:
+            return JsonResponse({'status': 1, 'msg': str(e)}, status=500)
+
+    # GET 请求渲染 dashboard 页面
+    if req.method == "GET":
+        return render(req, "dashboard.html")
+
+
+def logout_view(request):
+    logout(request)  # 清除会话
+    return redirect('/login/')  # 重定向到登录页面
+
 @csrf_exempt
 def signup(req):
     if req.method == "GET":
@@ -50,16 +79,3 @@ def signup(req):
             return JsonResponse({'status': 0, 'msg': '用户添加成功'}, status=201)
         except Exception as e:
             return JsonResponse({'status': 1, 'msg': str(e)}, status=500)
-
-
-def dashboard(req):
-    if 'user_id' not in req.session:
-        # 用户未登录，重定向到登录页面
-        return redirect('/')
-    # 用户已登录，渲染dashboard页面
-    return render(req, "dashboard.html")
-
-
-def logout_view(request):
-    logout(request)  # 清除会话
-    return redirect('/login/')  # 重定向到登录页面
